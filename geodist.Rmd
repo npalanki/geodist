@@ -1,0 +1,46 @@
+---
+title: "Geographic Distribution of Williams College Student Body from 2010-2015"
+author: "Nikhil V. Palanki '20"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The **geodist** package analyzes changes in the geographic distribution of the Williams College student body from 2010-2011 to 2015-2016 academic years. This package specifically answers the following three questions: How does the international student body change from 2010 to 2015? Which states consistently have the highest number of current Williams College undergraduates? Which countries consistently have the highest number of current Williams College undergraduates? Given that geographic diversity plays a role in admissions decisions as well as the overall identity of the Williams College student body, examining the trends in diverse student enrollment is important to ultimately evaluating the effectiveness of the Williams College Admissions Departments' domestic and international outreach efforts.
+
+## Data
+
+This package analyzes data provided by the [Office of the Registrar of Williams College](http://web.williams.edu/admin/registrar/catalog/archive.html). The PDF catalog documents compiled by the registrar were converted to text files by an online pdf-to-text converter and the appropriate data for the student body were further truncated. The data were then converted manually to .csv files.
+
+For each year, the data were split into two tables: a table for international students and a table for domestic students. The .csv files, which are labeled by "year" and either "intl" or "dom," are loaded in a block of 
+
+```{r}
+# Load the .csv files
+dom2015yr <- read.table("~/Desktop/geodist/csvs/2015dom.csv", header=T, sep=",")
+intl2015yr <- read.table("~/Desktop/geodist/csvs/2015intl.csv", header=T, sep=",")
+
+# Convert to Data Frames
+intl2015df <- data.frame(intl2015yr)
+dom2015df <- data.frame(dom2015yr)
+
+# Reorder Data Frames
+orddom2015 <- orderbystudents(dom2015df)
+ordintl2015 <- orderbystudents(intl2015df)
+
+# Calculate Perc. of Int'l students
+intlsum2015 <- sumofstudents(ordintl2015)
+intlperc2015 <- approxperc(intlsum2015)
+
+# Top States, Percentage of Int'l Students
+orddom2015[1:10,]
+intlperc2015
+```
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
