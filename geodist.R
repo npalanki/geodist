@@ -16,8 +16,6 @@ approxperc <- function(sum) {
   return(perc)
 }
 
-
-
 ### Computations over Data Sets from 2010-2015 ###
 
 # Organizing the data for 2010-11 Academic Year
@@ -30,6 +28,7 @@ ordintl2010 <- orderbystudents(intl2010df)
 intlsum2010 <- sumofstudents(ordintl2010)
 intlperc2010 <- approxperc(intlsum2010)
 orddom2010[1:10,]
+ordintl2010[1:10,]
 intlperc2010
 
 # Organizing the data for 2011-12 Academic Year
@@ -42,6 +41,7 @@ ordintl2011 <- orderbystudents(intl2011df)
 intlsum2011 <- sumofstudents(ordintl2011)
 intlperc2011 <- approxperc(intlsum2011)
 orddom2011[1:10,]
+ordintl2011[1:10,]
 intlperc2011
 
 # Organizing the data for 2012-13 Academic Year
@@ -54,6 +54,7 @@ ordintl2012 <- orderbystudents(intl2012df)
 intlsum2012 <- sumofstudents(ordintl2012)
 intlperc2012 <- approxperc(intlsum2012)
 orddom2012[1:10,]
+ordintl2012[1:10,]
 intlperc2012
 
 # Organizing the data for 2013-14 Academic Year
@@ -66,6 +67,7 @@ ordintl2013 <- orderbystudents(intl2013df)
 intlsum2013 <- sumofstudents(ordintl2013)
 intlperc2013 <- approxperc(intlsum2013)
 orddom2013[1:10,]
+ordintl2013[1:10,]
 intlperc2013
 
 # Organizing the data for 2014-15 Academic Year
@@ -78,6 +80,7 @@ ordintl2014 <- orderbystudents(intl2014df)
 intlsum2014 <- sumofstudents(ordintl2014)
 intlperc2014 <- approxperc(intlsum2014)
 orddom2014[1:10,]
+ordintl2014[1:10,]
 intlperc2014
 
 # Organizing the data for 2015-16 Academic Year
@@ -90,7 +93,5 @@ ordintl2015 <- orderbystudents(intl2015df)
 intlsum2015 <- sumofstudents(ordintl2015)
 intlperc2015 <- approxperc(intlsum2015)
 orddom2015[1:10,]
+ordintl2015[1:10,]
 intlperc2015
-
-
-

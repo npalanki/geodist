@@ -8,18 +8,15 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ## Introduction
-
-The **geodist** package analyzes changes in the geographic distribution of the Williams College student body from 2010-2011 to 2015-2016 academic years. This package specifically answers the following three questions: How does the international student body change from 2010 to 2015? Which states consistently have the highest number of current Williams College undergraduates? Which countries consistently have the highest number of current Williams College undergraduates? Given that geographic diversity plays a role in admissions decisions as well as the overall identity of the Williams College student body, examining the trends in diverse student enrollment is important to ultimately evaluating the effectiveness of the Williams College Admissions Departments' domestic and international outreach efforts.
+The **geodist** package examines changes in the geographic distribution of the Williams College student body from 2010-2011 to 2015-2016 academic years. This package specifically answers the following three questions: How does the international student body change from 2010 to 2015? Which states consistently produce the highest number of Williams College students from 2010 to 2015? Which countries consistently produce the highest number of Williams College students from 2010 to 2015? Given that geographic diversity plays a role in admissions decisions as well as the overall identity of the Williams College student body, examining the trends in diverse student enrollment is important to ultimately evaluating the effectiveness of the Williams College Admissions Departments' domestic and international outreach efforts.
 
 ## Dependencies & Code
-
-For the **geodist.R** file, there are not any external packages or libraries required to run the code. For the report, the **knitr:kable** package was used to both generate the pdf and present the sample tables nicely. In order to run the geodist.R file, move the **geodist** package to your desktop and run the geodist.R file since the directory paths within the file are already configured to find the dependent .csv files from the desktop.
+For the **geodist.R** file, there are not any external packages or libraries required to run the code. For the report, the **knitr** package was used to both generate the pdf and present the sample tables nicely. In order to run the geodist.R file, move the **geodist** package to your desktop and run the geodist.R file since the directory paths within the file are already configured to find the dependent .csv files from the desktop.
 
 ## Data
+This package analyzes data provided by the [Office of the Registrar of Williams College](http://web.williams.edu/admin/registrar/catalog/archive.html). The PDF catalog documents compiled by the registrar were converted to text files by an online pdf-to-text converter and the appropriate data for the student body were further truncated. The data were then converted to .csv files.
 
-This package analyzes data provided by the [Office of the Registrar of Williams College](http://web.williams.edu/admin/registrar/catalog/archive.html). The PDF catalog documents compiled by the registrar were converted to text files by an online pdf-to-text converter and the appropriate data for the student body were further truncated. The data were then converted manually to .csv files.
-
-For each year, the data were split into two tables: a table for international students and a table for domestic students. The .csv files, which are labeled by "year" and either "intl" or "dom," are loaded in a block of 
+For each year, the data were split into two tables: a table for international students and a table for domestic students. The .csv files, which are labeled by "year" and either "intl" or "dom," are loaded in a block of code seen below.
 
 ```{r, include=FALSE}
 # Orders data frame by students
@@ -37,6 +34,66 @@ approxperc <- function(sum) {
   perc <- 100 * (sum/2200)
   return(perc)
 }
+
+# Organizing the data for 2010-11 Academic Year
+dom2010yr <- read.table("~/Desktop/geodist/csvs/2010dom.csv", header=T, sep=",")
+intl2010yr <- read.table("~/Desktop/geodist/csvs/2010intl.csv", header=T, sep=",")
+intl2010df <- data.frame(intl2010yr)
+dom2010df <- data.frame(dom2010yr)
+orddom2010 <- orderbystudents(dom2010df)
+ordintl2010 <- orderbystudents(intl2010df)
+intlsum2010 <- sumofstudents(ordintl2010)
+intlperc2010 <- approxperc(intlsum2010)
+orddom2010[1:10,]
+intlperc2010
+
+# Organizing the data for 2011-12 Academic Year
+dom2011yr <- read.table("~/Desktop/geodist/csvs/2011dom.csv", header=T, sep=",")
+intl2011yr <- read.table("~/Desktop/geodist/csvs/2011intl.csv", header=T, sep=",")
+intl2011df <- data.frame(intl2011yr)
+dom2011df <- data.frame(dom2011yr)
+orddom2011 <- orderbystudents(dom2011df)
+ordintl2011 <- orderbystudents(intl2011df)
+intlsum2011 <- sumofstudents(ordintl2011)
+intlperc2011 <- approxperc(intlsum2011)
+orddom2011[1:10,]
+intlperc2011
+
+# Organizing the data for 2012-13 Academic Year
+dom2012yr <- read.table("~/Desktop/geodist/csvs/2012dom.csv", header=T, sep=",")
+intl2012yr <- read.table("~/Desktop/geodist/csvs/2012intl.csv", header=T, sep=",")
+intl2012df <- data.frame(intl2012yr)
+dom2012df <- data.frame(dom2012yr)
+orddom2012 <- orderbystudents(dom2012df)
+ordintl2012 <- orderbystudents(intl2012df)
+intlsum2012 <- sumofstudents(ordintl2012)
+intlperc2012 <- approxperc(intlsum2012)
+orddom2012[1:10,]
+intlperc2012
+
+# Organizing the data for 2013-14 Academic Year
+dom2013yr <- read.table("~/Desktop/geodist/csvs/2013dom.csv", header=T, sep=",")
+intl2013yr <- read.table("~/Desktop/geodist/csvs/2013intl.csv", header=T, sep=",")
+intl2013df <- data.frame(intl2013yr)
+dom2013df <- data.frame(dom2013yr)
+orddom2013 <- orderbystudents(dom2013df)
+ordintl2013 <- orderbystudents(intl2013df)
+intlsum2013 <- sumofstudents(ordintl2013)
+intlperc2013 <- approxperc(intlsum2013)
+orddom2013[1:10,]
+intlperc2013
+
+# Organizing the data for 2014-15 Academic Year
+dom2014yr <- read.table("~/Desktop/geodist/csvs/2014dom.csv", header=T, sep=",")
+intl2014yr <- read.table("~/Desktop/geodist/csvs/2014intl.csv", header=T, sep=",")
+intl2014df <- data.frame(intl2014yr)
+dom2014df <- data.frame(dom2014yr)
+orddom2014 <- orderbystudents(dom2014df)
+ordintl2014 <- orderbystudents(intl2014df)
+intlsum2014 <- sumofstudents(ordintl2014)
+intlperc2014 <- approxperc(intlsum2014)
+orddom2014[1:10,]
+intlperc2014
 ```
 
 
@@ -59,11 +116,81 @@ intlsum2015 <- sumofstudents(ordintl2015)
 intlperc2015 <- approxperc(intlsum2015)
 ```
 
-The following are sample results. The first value is an approximate percentage (with the total student body estimated at ~2200) of international students at Williams College during the 2015-2016 academic year. The second table shows the top 10 states with highest student representation among the Williams College student body.
+The following are sample results. The first value is an approximate percentage (with the total student body estimated at ~2200) of international students at Williams College during the 2015-2016 academic year. The second table shows the top 10 states with highest student representation among the Williams College student body. The third table shows the top 10 foreign countries with the highest student representation.
 
 ```{r}
 # Percentage of Int'l Students, Top States
 intlperc2015
-ordkabdom2015 <- kable(orddom2015[1:10,])
+```
+```{r}
+# Top 10 Represented States among Williams students in 2015-16
+ordkabdom2015 <- kable(orddom2015[1:10,], caption = "2015-2016 Academic Year - Domestic")
 ordkabdom2015
+```
+```{r}
+# Top 10 Represented Countries among Williams students in 2015-16
+ordkabintl2015 <- kable(ordintl2015[1:10,], caption = "2015-2016 Academic Year - International")
+ordkabintl2015
+```
+
+## Results & Analysis
+```{r, include=FALSE}
+ordkabdom2015 <- kable(orddom2015[1:10,], caption = "2015-2016 Academic Year - Domestic")
+ordkabdom2014 <- kable(orddom2014[1:10,], caption = "2014-2015 Academic Year - Domestic")
+ordkabdom2013 <- kable(orddom2013[1:10,], caption = "2013-2014 Academic Year - Domestic")
+ordkabdom2012 <- kable(orddom2012[1:10,], caption = "2012-2013 Academic Year - Domestic")
+ordkabdom2011 <- kable(orddom2011[1:10,], caption = "2011-2012 Academic Year - Domestic")
+ordkabdom2010 <- kable(orddom2010[1:10,], caption = "2010-2011 Academic Year - Domestic")
+
+ordkabintl2015 <- kable(ordintl2015[1:10,], caption = "2015-2016 Academic Year - International")
+ordkabintl2014 <- kable(ordintl2014[1:10,], caption = "2014-2015 Academic Year - International")
+ordkabintl2013 <- kable(ordintl2013[1:10,], caption = "2013-2014 Academic Year - International")
+ordkabintl2012 <- kable(ordintl2012[1:10,], caption = "2012-2013 Academic Year - International")
+ordkabintl2011 <- kable(ordintl2011[1:10,], caption = "2011-2012 Academic Year - International")
+ordkabintl2010 <- kable(ordintl2010[1:10,], caption = "2010-2011 Academic Year - International")
+
+intlpercs <- c("2010-2011" = intlperc2010, "2011-2012" = intlperc2011, "2012-2013" = intlperc2012, "2013-2014" = intlperc2013, "2014-2015" = intlperc2014, "2015-2016" = intlperc2015)
+perctable <- kable(intlpercs, caption="Approx. Percentage of Int'l Students")
+```
+The resulting data are organized at the end of the document in table form. Unfortunately, I couldn't quite figure out how to line the tables up nicely together without compromising format quality, so I put them at the end as to maintain continuity throughout the paper. Altogether, this package aims to answer three questions about Williams College undergraduates' geographic distribution from the years 2010-11 to 2015-16.
+
+**Question 1 : How does the international student body change from 2010 to 2015?**
+As shown in Table 3, between 2010 and 2015, the percentage of the Williams student body that hails from foreign countries has declined from **~10.7%** to **~9.2%**. This result is interesting as, despite efforts to improve college diversity across nationwide campuses, Williams experienced a slight decline in international students. However, one assumption in the data was that the student body would remain approximately 2,200 every year, and doesn't take into account years with slightly smaller student bodies. As a result, the above percentages at worst are a slight underestimate.
+
+**Question 2 : Which states consistently produce the highest number of Williams College students from 2010 to 2015? **
+Tables 4-9 show the Top 10 most represented states at Williams over the aforementioned years. The five states with consistently the highest representation at Williams are **New York** (1st all six years), **Massachusetts** (2nd all six years), **California** (3rd all six years), **Connecticut** and **New Jersey** (which alternate 4th and 5th occasionally). Furthermore, the next five most represented states, **Illinois**, **Texas**, **Florida**, **Maryland**, and **Pennsylvania**, consistently fill the spots 6-10 among the most represented states from 2010 to 2015. 
+
+An interesting place for further examination is the trend in the tailing states of this group. As a potential future project, it would be useful to analyze how the bottom 10 states change in their representation as this information could further inform the Williams College admissions office on its marketing efforts throughout underrepresented states.
+
+**Question 3 : Which countries consistently produce the highest number of Williams College students from 2010 to 2015? ** 
+Tables 10-15 show the Top 10 most represented countries at Williams. As we can observe, the three most highly represented countries at Williams are **Canada**, **China (People's Republic of)**, and **Republic of Korea**. These countries alternate positions for top three slots, with Canada holding 1st for the last four years. Outside of these three countries, **Kenya**, **United Kingdom**, **Nepal**, and **Vietnam** have had consistent representation among top 10 most represented countries over the last six years. 
+
+## Further Investigation
+This paper and package only touch upon the myriad implications of understanding trends in geographic representation among Williams College students. How has geographic representation changed over a longer timeframe? Additionally, how does representation from nations and states with previously few Williams students evolve over the years? Furthermore, how do other aspects of a particular region such as political climate, overall economic health, consumer price index, foreign currency exchange rate, and social norms affect changes in student representation? A continual investigation of from where Williams College students hail would be beneficial to the College as it evaluates its efforts to attract more students of different backgrounds.
+
+## Appendix of Data
+The first result is a table with the approx. percentage of Williams College students who are international.
+```{r, echo=FALSE}
+perctable
+```
+
+The top 10 represented states among Williams students from 2010-2011 to 2015-2016 academic years are shown in the tables below. 
+```{r, echo=FALSE}
+ordkabdom2010
+ordkabdom2011
+ordkabdom2012
+ordkabdom2013
+ordkabdom2014
+ordkabdom2015
+```
+
+And finally, below are the top 10 represented countries among Williams students from 2010-2011 to 2015-2016.
+
+```{r, echo=FALSE}
+ordkabintl2010
+ordkabintl2011
+ordkabintl2012
+ordkabintl2013
+ordkabintl2014
+ordkabintl2015
 ```
